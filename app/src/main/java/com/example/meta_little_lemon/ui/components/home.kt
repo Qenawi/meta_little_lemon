@@ -310,7 +310,7 @@ fun MenuItem(item: MenuItemRoom) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
-                Modifier.fillMaxWidth(0.7f),
+                Modifier.fillMaxWidth(0.5f),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(text = item.title, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 10.dp))
@@ -319,10 +319,10 @@ fun MenuItem(item: MenuItemRoom) {
 
             }
 
-            GlideImage(model = item.imageUrl,
+            GlideImage(model = "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pasta.jpg",
                 contentDescription = "",
                 Modifier.size(100.dp, 100.dp),
-                contentScale = ContentScale.Crop)
+                contentScale = ContentScale.Fit)
 
         }
     }

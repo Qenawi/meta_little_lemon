@@ -6,7 +6,7 @@
       "description": "Delicious pasta with savory Bolognese sauce.",
       "price": 12.99,
       "category": "Pasta",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/pasta.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pasta.jpg"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "description": "Classic pizza with tomato, mozzarella, and basil.",
       "price": 15.99,
       "category": "Pizza",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/pizza.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pizza.jpg"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "description": "Fresh salad with romaine lettuce, croutons, and Caesar dressing.",
       "price": 8.99,
       "category": "Salad",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/salad.jpg?raw=true"
+      "image": "https://github.com/Qenawi/meta_little_lemon/blob/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg?raw=true"
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "description": "Creamy Alfredo sauce with grilled chicken over fettuccine pasta.",
       "price": 14.99,
       "category": "Pasta",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/pasta.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pasta.jpg"
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "description": "Fresh vegetables on a thin crust with tomato sauce and cheese.",
       "price": 13.99,
       "category": "Pizza",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/pizza.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pizza.jpg"
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "description": "Classic Greek salad with feta cheese, olives, and vinaigrette.",
       "price": 9.99,
       "category": "Salad",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/salad.jpg?raw=true"
+      "image": "https://github.com/Qenawi/meta_little_lemon/blob/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg?raw=true"
     },
     {
       "id": 7,
@@ -54,7 +54,7 @@
       "description": "Layers of pasta, ricotta, and meat sauce baked to perfection.",
       "price": 16.99,
       "category": "Pasta",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/pasta.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pasta.jpg"
     },
     {
       "id": 8,
@@ -62,7 +62,7 @@
       "description": "Grilled chicken, BBQ sauce, red onions, and cilantro on a pizza crust.",
       "price": 17.99,
       "category": "Pizza",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/pizza.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pizza.jpg"
     },
     {
       "id": 9,
@@ -70,7 +70,7 @@
       "description": "A refreshing salad with avocado, bacon, blue cheese, and tomatoes.",
       "price": 10.99,
       "category": "Salad",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/salad.jpg?raw=true"
+      "image": "https://github.com/Qenawi/meta_little_lemon/blob/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg?raw=true"
     },
     {
       "id": 10,
@@ -78,7 +78,7 @@
       "description": "Garlic butter shrimp served over linguine.",
       "price": 18.99,
       "category": "Pasta",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/pasta.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pasta.jpg"
     },
     {
       "id": 11,
@@ -86,7 +86,7 @@
       "description": "Ham, pineapple, and cheese on a tomato sauce base.",
       "price": 14.99,
       "category": "Pizza",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/pizza.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pizza.jpg"
     },
     {
       "id": 12,
@@ -94,7 +94,7 @@
       "description": "Fresh tomatoes, mozzarella, and basil drizzled with balsamic glaze.",
       "price": 11.99,
       "category": "Salad",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/master/app/src/main/res/drawable/salad.jpg?raw=true"
+      "image": "https://github.com/Qenawi/meta_little_lemon/blob/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg?raw=true"
     }
   ]
 }
