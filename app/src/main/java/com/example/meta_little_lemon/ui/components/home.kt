@@ -1,18 +1,16 @@
 package com.example.meta_little_lemon.ui.components
 
-import android.app.Application
-import android.util.Log
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,77 +27,103 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
 import com.example.meta_little_lemon.R
 import com.example.meta_little_lemon.ui.theme.PrimaryGreen
 import com.example.meta_little_lemon.ui.theme.PrimaryYellow
-import com.example.meta_little_lemon.ui.theme.PurpleGrey40
-import com.example.meta_little_lemon.ui.theme.Secondary1
 
 
 @Composable
-fun Home(navController: NavHostController) {
+fun Home(navController: NavHostController, contextProvider:()->Context) {
 
 
-   // val viewModel: MyViewModel = viewModel()
-   // val databaseMenuItems = viewModel.getAllDatabaseMenuItems().observeAsState(emptyList()).value
+    // val viewModel: MyViewModel = viewModel()
+    // val databaseMenuItems = viewModel.getAllDatabaseMenuItems().observeAsState(emptyList()).value
     val searchPhrase = remember {
         mutableStateOf("")
     }
 
     LaunchedEffect(Unit) {}
     Column {
-        Header(navController)
-        UpperPanel{ searchPhrase.value = it }
-        LowerPanel(arrayListOf("Startes","Main","Kyc"), searchPhrase)
+        Header(navController,contextProvider)
+        UpperPanel { searchPhrase.value = it }
+        LowerPanel(arrayListOf("Startes", "Main", "Kyc"), searchPhrase)
     }
 
 
 }
 
 @Composable
-fun Header(navController: NavHostController){
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 10.dp, vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center)
+fun Header(navController: NavHostController, contextProvider:()->Context ) {
+    Box(Modifier.fillMaxWidth())
     {
-        Image(painter = painterResource(id = R.drawable.lemon),
+        // title and image
+        Row(
+            Modifier
+                .padding(horizontal = 10.dp, vertical = 10.dp)
+                .align(Alignment.Center),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        )
+        {
+            Image(
+                painter = painterResource(id = R.drawable.lemon),
+                contentDescription = "Little Lemon Logo",
+                modifier = Modifier.size(30.dp),
+                contentScale = ContentScale.Fit
+            )
+            Text(
+                text = stringResource(id = R.string.app_name),
+                style = MaterialTheme.typography.headlineMedium
+            )
+        }
+        Image(
+            painter = painterResource(id = R.drawable.woman),
             contentDescription = "Little Lemon Logo",
             modifier = Modifier
-                .size(30.dp)
+                .size(50.dp)
+                .align(Alignment.CenterEnd)
+                .padding(end = 10.dp)
+                .clickable {
+                    Toast.makeText(contextProvider(), "Profile", Toast.LENGTH_SHORT).show()
+                },
+            contentScale = ContentScale.Fit
         )
-        Text(text = stringResource(id = R.string.app_name) , style = MaterialTheme.typography.headlineMedium)
-
-    }//Row
+    }
 }
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UpperPanel(search : (parameter: String)-> Unit) {
+fun UpperPanel(search: (parameter: String) -> Unit) {
     val searchPhrase = remember {
         mutableStateOf("")
     }
 
-    Column(modifier = Modifier
-        .background(PrimaryGreen)
-        .padding(horizontal = 20.dp, vertical = 10.dp)) {
-        Text(text = "Little Lemon", style = MaterialTheme.typography.headlineSmall, color = PrimaryYellow)
+    Column(
+        modifier = Modifier
+            .background(PrimaryGreen)
+            .padding(horizontal = 20.dp, vertical = 10.dp)
+    ) {
+        Text(
+            text = "Little Lemon",
+            style = MaterialTheme.typography.headlineSmall,
+            color = PrimaryYellow
+        )
         Text(text = "New York", style = MaterialTheme.typography.headlineLarge, color = Color.White)
-        Row(Modifier.fillMaxWidth(),
+        Row(
+            Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween) {
-            Text(text = "We are a family owned Mediterranean restaurant, focused on traditional recipes served with  a modern twist. Turkish, Italian, Indian and chinese recipes are our speciality.",
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "We are a family owned Mediterranean restaurant, focused on traditional recipes served with  a modern twist. Turkish, Italian, Indian and chinese recipes are our speciality.",
                 modifier = Modifier.fillMaxWidth(0.7f),
                 color = Color.White,
-                style = MaterialTheme.typography.bodySmall)
+                style = MaterialTheme.typography.bodySmall
+            )
             Image(
                 painter = painterResource(id = R.drawable.ic_person),
                 contentDescription = "Hero Image",
@@ -107,9 +131,9 @@ fun UpperPanel(search : (parameter: String)-> Unit) {
                     .clip(RoundedCornerShape(16.dp))
             )
         }
-
         Spacer(modifier = Modifier.size(10.dp))
-        OutlinedTextField(value = searchPhrase.value,
+        OutlinedTextField(
+            value = searchPhrase.value,
             onValueChange = {
                 searchPhrase.value = it
                 search(searchPhrase.value)
@@ -120,13 +144,17 @@ fun UpperPanel(search : (parameter: String)-> Unit) {
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search Icon")
+                    contentDescription = "Search Icon"
+                )
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
 
                 containerColor = Color.White
             ),
-            modifier = Modifier.fillMaxWidth())
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 5.dp)
+        )
 
     }
 
@@ -144,11 +172,10 @@ fun LowerPanel(databaseMenuItems: List<String>, search: MutableState<String>) {
     }
 
 
-    val items = if(search.value == ""){
+    val items = if (search.value == "") {
         databaseMenuItems
 
-    }
-    else{
+    } else {
         databaseMenuItems.filter {
             it.contains(search.value, ignoreCase = true)
 
@@ -158,11 +185,9 @@ fun LowerPanel(databaseMenuItems: List<String>, search: MutableState<String>) {
     }
 
 
-
-    val filteredItems = if(selectedCategory.value == "" || selectedCategory.value == "all"){
+    val filteredItems = if (selectedCategory.value == "" || selectedCategory.value == "all") {
         items
-    }
-    else{
+    } else {
         items.filter {
             it.contains(selectedCategory.value, ignoreCase = true)
         }
@@ -170,10 +195,10 @@ fun LowerPanel(databaseMenuItems: List<String>, search: MutableState<String>) {
 
 
     Column {
-        MenuCategories(categories) {selectedCategory.value = it }
+        MenuCategories(categories) { selectedCategory.value = it }
         Spacer(modifier = Modifier.size(2.dp))
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            for (item in filteredItems){
+            for (item in filteredItems) {
                 MenuItem(item = item)
             }
         }
@@ -194,7 +219,7 @@ fun MenuCategories(categories: Set<String>, categoryLambda: (sel: String) -> Uni
             .background(Color.White)
             .padding(horizontal = 20.dp, vertical = 10.dp)
     ) {
-        Text(text = "ORDER FOR DELIVERY", style =  MaterialTheme.typography.headlineMedium)
+        Text(text = "ORDER FOR DELIVERY", style = MaterialTheme.typography.headlineMedium)
 
         Row(
             modifier = Modifier
@@ -221,19 +246,21 @@ fun MenuCategories(categories: Set<String>, categoryLambda: (sel: String) -> Uni
 }
 
 @Composable
-fun CategoryButton(category:String, selectedCategory: (sel: String) -> Unit) {
-    val isClicked = remember{
+fun CategoryButton(category: String, selectedCategory: (sel: String) -> Unit) {
+    val isClicked = remember {
         mutableStateOf(false)
     }
-    Button(onClick = {
-        isClicked.value = !isClicked.value
-        selectedCategory(category)
+    Button(
+        onClick = {
+            isClicked.value = !isClicked.value
+            selectedCategory(category)
 
-    },
+        },
         colors = ButtonDefaults.buttonColors(
             contentColor = Color.White,
             containerColor = PrimaryGreen
-        )) {
+        )
+    ) {
         Text(text = category)
     }
 }
@@ -245,7 +272,7 @@ fun MenuItem(item: String) {
     val itemDescription = item
 
     Card(
-        colors = CardDefaults.cardColors(containerColor = PrimaryGreen , contentColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = PrimaryGreen, contentColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = Modifier
             .clickable {}
@@ -256,10 +283,17 @@ fun MenuItem(item: String) {
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp, vertical = 10.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.fillMaxWidth(0.7f),
-                verticalArrangement = Arrangement.SpaceBetween) {
-                Text(text = "title", fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 10.dp))
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                Modifier.fillMaxWidth(0.7f),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "title",
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 10.dp)
+                )
                 Text(text = "description", modifier = Modifier.padding(bottom = 10.dp))
                 Text(text = "$ ${item}", fontWeight = FontWeight.Bold)
 
