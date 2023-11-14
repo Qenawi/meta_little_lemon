@@ -1,5 +1,6 @@
 package com.example.meta_little_lemon.ui.components
 
+import android.app.Application
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.*
@@ -19,6 +20,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,9 +30,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.example.meta_little_lemon.R
+import com.example.meta_little_lemon.ui.LittleLemonVM
+import com.example.meta_little_lemon.ui.data.MenuItemRoom
 import com.example.meta_little_lemon.ui.theme.PrimaryGreen
 import com.example.meta_little_lemon.ui.theme.PrimaryYellow
 
@@ -39,17 +45,19 @@ import com.example.meta_little_lemon.ui.theme.PrimaryYellow
 fun Home(navController: NavHostController, contextProvider:()->Context) {
 
 
-    // val viewModel: MyViewModel = viewModel()
-    // val databaseMenuItems = viewModel.getAllDatabaseMenuItems().observeAsState(emptyList()).value
+    val viewModel: LittleLemonVM  = viewModel()
+    val databaseMenuItems = viewModel.getAllDatabaseMenuItems().observeAsState(emptyList()).value
     val searchPhrase = remember {
         mutableStateOf("")
     }
 
-    LaunchedEffect(Unit) {}
+    LaunchedEffect(Unit) {
+        viewModel.fetchMenuDataIfNeeded()
+    }
     Column {
         Header(navController,contextProvider)
         UpperPanel { searchPhrase.value = it }
-        LowerPanel(arrayListOf("Startes", "Main", "Kyc"), searchPhrase)
+        LowerPanel(databaseMenuItems, searchPhrase)
     }
 
 
@@ -87,7 +95,9 @@ fun Header(navController: NavHostController, contextProvider:()->Context ) {
                 .align(Alignment.CenterEnd)
                 .padding(end = 10.dp)
                 .clickable {
-                    Toast.makeText(contextProvider(), "Profile", Toast.LENGTH_SHORT).show()
+                    Toast
+                        .makeText(contextProvider(), "Profile", Toast.LENGTH_SHORT)
+                        .show()
                 },
             contentScale = ContentScale.Fit
         )
@@ -149,7 +159,9 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
 
-                containerColor = Color.White
+                containerColor = Color.White,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black
             ),
             modifier = Modifier
                 .fillMaxWidth()
@@ -161,9 +173,11 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
 }
 
 @Composable
-fun LowerPanel(databaseMenuItems: List<String>, search: MutableState<String>) {
+fun LowerPanel(databaseMenuItems: List<MenuItemRoom>, search: MutableState<String>) {
     val categories = databaseMenuItems.map {
-        it.uppercase()
+        it.category.replaceFirstChar {character ->
+            character.uppercase()
+        }
     }.toSet()
 
 
@@ -172,12 +186,13 @@ fun LowerPanel(databaseMenuItems: List<String>, search: MutableState<String>) {
     }
 
 
-    val items = if (search.value == "") {
+    val items = if(search.value == ""){
         databaseMenuItems
 
-    } else {
+    }
+    else{
         databaseMenuItems.filter {
-            it.contains(search.value, ignoreCase = true)
+            it.title.contains(search.value, ignoreCase = true)
 
         }
 
@@ -185,20 +200,23 @@ fun LowerPanel(databaseMenuItems: List<String>, search: MutableState<String>) {
     }
 
 
-    val filteredItems = if (selectedCategory.value == "" || selectedCategory.value == "all") {
+
+    val filteredItems = if(selectedCategory.value == "" || selectedCategory.value == "all"){
         items
-    } else {
+    }
+    else{
         items.filter {
-            it.contains(selectedCategory.value, ignoreCase = true)
+            it.category.contains(selectedCategory.value, ignoreCase = true)
         }
     }
 
 
     Column {
-        MenuCategories(categories) { selectedCategory.value = it }
+        MenuCategories(categories) {selectedCategory.value = it
+        }
         Spacer(modifier = Modifier.size(2.dp))
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            for (item in filteredItems) {
+            for (item in filteredItems){
                 MenuItem(item = item)
             }
         }
@@ -267,9 +285,15 @@ fun CategoryButton(category: String, selectedCategory: (sel: String) -> Unit) {
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun MenuItem(item: String) {
+fun MenuItem(item: MenuItemRoom) {
 
-    val itemDescription = item
+    val itemDescription = if(item.description.length>100) {
+        item.description.substring(0,100) + ". . ."
+    }
+    else{
+        item.description
+    }
+
 
     Card(
         colors = CardDefaults.cardColors(containerColor = PrimaryGreen, contentColor = Color.White),
@@ -289,21 +313,16 @@ fun MenuItem(item: String) {
                 Modifier.fillMaxWidth(0.7f),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = "title",
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 10.dp)
-                )
-                Text(text = "description", modifier = Modifier.padding(bottom = 10.dp))
-                Text(text = "$ ${item}", fontWeight = FontWeight.Bold)
+                Text(text = item.title, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 10.dp))
+                Text(text = itemDescription, modifier = Modifier.padding(bottom = 10.dp))
+                Text(text = "$ ${item.price}", fontWeight = FontWeight.Bold)
 
             }
 
-            Image(
-                painter = painterResource(id = R.drawable.lemon),
+            GlideImage(model = item.imageUrl,
                 contentDescription = "",
-                contentScale = ContentScale.Fit, modifier = Modifier.size(20.dp)
-            )
+                Modifier.size(100.dp, 100.dp),
+                contentScale = ContentScale.Crop)
 
         }
     }

@@ -97,7 +97,8 @@ fun Onboarding(context: Context, navHostController: NavHostController) {
 
     Column(
         Modifier
-            .fillMaxSize().background(Color.White)
+            .fillMaxSize()
+            .background(Color.White)
             .padding(20.dp)
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -139,7 +140,12 @@ fun Onboarding(context: Context, navHostController: NavHostController) {
             placeholder = { Text(text = "John") },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedLabelColor = PrimaryGreen,
-                focusedBorderColor = PrimaryGreen
+                focusedBorderColor = PrimaryGreen,
+                unfocusedPlaceholderColor = Color.Black,
+                unfocusedLabelColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedTextColor = PrimaryGreen
+
             ),
             modifier = Modifier.fillMaxWidth()
         )
@@ -154,7 +160,11 @@ fun Onboarding(context: Context, navHostController: NavHostController) {
             placeholder = { Text(text = "Doe") },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedLabelColor = PrimaryGreen,
-                focusedBorderColor = PrimaryGreen
+                focusedBorderColor = PrimaryGreen,
+                unfocusedPlaceholderColor = Color.Black,
+                unfocusedLabelColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedTextColor = PrimaryGreen
             ),
             modifier = Modifier.fillMaxWidth()
         )
@@ -169,7 +179,11 @@ fun Onboarding(context: Context, navHostController: NavHostController) {
             placeholder = { Text(text = "johndoe@gmail.com") },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedLabelColor = PrimaryGreen,
-                focusedBorderColor = PrimaryGreen
+                focusedBorderColor = PrimaryGreen,
+                unfocusedPlaceholderColor = Color.Black,
+                unfocusedLabelColor = Color.Black,
+                unfocusedTextColor = Color.Black,
+                focusedTextColor = PrimaryGreen
             ),
             modifier = Modifier.fillMaxWidth()
         )

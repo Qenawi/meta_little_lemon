@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Start(contextProvider:()-> Context) {
         val navController = rememberNavController()
-        NavHost(navController = navController, startDestination = "onBoarding") {
+        NavHost(navController = navController, startDestination = "Home") {
             composable("onBoarding") { Onboarding(contextProvider(),navController) }
             composable("Home"){Home(navController,contextProvider)}
         }

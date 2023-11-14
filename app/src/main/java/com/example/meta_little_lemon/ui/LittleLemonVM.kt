@@ -33,7 +33,7 @@ class LittleLemonVM (app:Application):AndroidViewModel(app){
             if (database.menuItemDao().isEmpty()) {
                 saveMenuToDatabase(
                     database,
-                    fetchMenu("x")
+                    fetchMenu("https://raw.githubusercontent.com/Qenawi/meta_little_lemon/master/app/src/main/assets/rawJson.json")
                 )
             }
         }
