@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">meta_little_lemon</string>
+    <string name="app_name">Meta Little Lemon</string>
+    <string name="title_updated">little lemon</string>
+    <string name="location_updated">Metropolis</string>
+    <string name="description_updated">Discover the essence of a family-owned Mediterranean restaurant, bringing you traditional recipes with a contemporary twist.</string>
+    <string name="order_button_text_updated">Place Takeout Order</string>
+    <string name="weekly_special_updated">Weekly Feature</string>
+    <string name="add_for_updated">Include for</string>
 </resources>
