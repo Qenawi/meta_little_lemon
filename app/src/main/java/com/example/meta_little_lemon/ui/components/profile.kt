@@ -24,6 +24,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -81,8 +82,9 @@ fun Profile(context: Context, navHostController: NavHostController) {
             singleLine = true,
             placeholder = { Text(text = "John") },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                disabledBorderColor = PrimaryGreen,
-                disabledLabelColor = PrimaryGreen
+                disabledBorderColor = Color.Black,
+                disabledLabelColor = Color.Black,
+                disabledTextColor = Color.Black,
             ),
             modifier = Modifier.fillMaxWidth()
         )
@@ -96,8 +98,9 @@ fun Profile(context: Context, navHostController: NavHostController) {
             singleLine = true,
             placeholder = { Text(text = "Doe") },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                disabledBorderColor = PrimaryGreen,
-                disabledLabelColor = PrimaryGreen
+                disabledBorderColor = Color.Black,
+                disabledLabelColor = Color.Black,
+                disabledTextColor = Color.Black,
             ),
             modifier = Modifier.fillMaxWidth()
         )
@@ -111,8 +114,9 @@ fun Profile(context: Context, navHostController: NavHostController) {
             singleLine = true,
             placeholder = { Text(text = "johndoe@gmail.com") },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                disabledBorderColor = PrimaryGreen,
-                disabledLabelColor = PrimaryGreen
+                disabledBorderColor = Color.Black,
+                disabledLabelColor = Color.Black,
+                disabledTextColor = Color.Black,
             ),
             modifier = Modifier.fillMaxWidth()
         )

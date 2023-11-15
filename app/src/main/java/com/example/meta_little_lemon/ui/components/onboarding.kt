@@ -1,6 +1,8 @@
 package com.example.meta_little_lemon.ui.components
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.provider.Settings.Global.putString
 import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -38,6 +40,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavHostController

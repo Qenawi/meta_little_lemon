@@ -57,7 +57,7 @@ fun Home(navController: NavHostController, contextProvider: () -> Context) {
     Column {
         Header(navController, contextProvider)
         UpperPanel { searchPhrase.value = it }
-        LowerPanel(databaseMenuItems, searchPhrase)
+        LowerPanel(databaseMenuItems, searchPhrase,navController)
     }
 
 
@@ -120,7 +120,7 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
             style = MaterialTheme.typography.headlineSmall,
             color = PrimaryYellow
         )
-        Text(text = "New York", style = MaterialTheme.typography.headlineLarge, color = Color.White)
+        Text(text = "Alaska", style = MaterialTheme.typography.headlineLarge, color = Color.White)
         Row(
             Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -133,10 +133,11 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
                 style = MaterialTheme.typography.bodySmall
             )
             Image(
-                painter = painterResource(id = R.drawable.ic_person),
+                painter = painterResource(id = R.drawable.cocker),
                 contentDescription = "Hero Image",
                 modifier = Modifier
-                    .clip(RoundedCornerShape(16.dp))
+                    .size(100.dp)
+                    .clip(RoundedCornerShape(50.dp))
             )
         }
         Spacer(modifier = Modifier.size(10.dp))
@@ -171,7 +172,7 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
 }
 
 @Composable
-fun LowerPanel(databaseMenuItems: List<MenuItemRoom>, search: MutableState<String>) {
+fun LowerPanel(databaseMenuItems: List<MenuItemRoom>, search: MutableState<String>,navController: NavHostController) {
     val categories = databaseMenuItems.map {
         it.category.replaceFirstChar { character ->
             character.uppercase()
@@ -213,7 +214,7 @@ fun LowerPanel(databaseMenuItems: List<MenuItemRoom>, search: MutableState<Strin
         Spacer(modifier = Modifier.size(2.dp))
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             for (item in filteredItems) {
-                MenuItem(item = item)
+                MenuItem(item = item, navController )
             }
         }
 
@@ -281,7 +282,7 @@ fun CategoryButton(category: String, selectedCategory: (sel: String) -> Unit) {
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun MenuItem(item: MenuItemRoom) {
+fun MenuItem(item: MenuItemRoom,navController: NavHostController) {
 
     val itemDescription = if (item.description.length > 100) {
         item.description.substring(0, 100) + ". . ."
@@ -294,7 +295,10 @@ fun MenuItem(item: MenuItemRoom) {
         colors = CardDefaults.cardColors(containerColor = PrimaryGreen, contentColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = Modifier
-            .clickable {}
+            .clickable {
+
+                navController.navigate("$DetailsScreenRoute")
+            }
             .padding(4.dp),
     ) {
         Row(
@@ -329,3 +333,5 @@ fun MenuItem(item: MenuItemRoom) {
     }
 
 }
+
+const val DetailsScreenRoute = "detailsScreen"

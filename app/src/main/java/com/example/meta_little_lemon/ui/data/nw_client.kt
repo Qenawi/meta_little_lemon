@@ -8,17 +8,6 @@ import io.ktor.client.request.get
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 
-fun validateRegData(firstName:String, lastName: String, email: String): Boolean{
-    var validated = false
-
-    if(firstName.isNotBlank() && lastName.isNotBlank() && email.isNotBlank()){
-        if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
-            validated = true
-    }
-
-    return validated
-}
-
 
 suspend fun fetchMenu(url: String): List<MenuItemNetwork> {
     val httpClient = HttpClient(Android){
