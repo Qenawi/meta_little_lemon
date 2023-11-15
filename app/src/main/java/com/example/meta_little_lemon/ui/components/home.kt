@@ -42,10 +42,10 @@ import com.example.meta_little_lemon.ui.theme.PrimaryYellow
 
 
 @Composable
-fun Home(navController: NavHostController, contextProvider:()->Context) {
+fun Home(navController: NavHostController, contextProvider: () -> Context) {
 
 
-    val viewModel: LittleLemonVM  = viewModel()
+    val viewModel: LittleLemonVM = viewModel()
     val databaseMenuItems = viewModel.getAllDatabaseMenuItems().observeAsState(emptyList()).value
     val searchPhrase = remember {
         mutableStateOf("")
@@ -55,7 +55,7 @@ fun Home(navController: NavHostController, contextProvider:()->Context) {
         viewModel.fetchMenuDataIfNeeded()
     }
     Column {
-        Header(navController,contextProvider)
+        Header(navController, contextProvider)
         UpperPanel { searchPhrase.value = it }
         LowerPanel(databaseMenuItems, searchPhrase)
     }
@@ -64,7 +64,7 @@ fun Home(navController: NavHostController, contextProvider:()->Context) {
 }
 
 @Composable
-fun Header(navController: NavHostController, contextProvider:()->Context ) {
+fun Header(navController: NavHostController, contextProvider: () -> Context) {
     Box(Modifier.fillMaxWidth())
     {
         // title and image
@@ -95,9 +95,7 @@ fun Header(navController: NavHostController, contextProvider:()->Context ) {
                 .align(Alignment.CenterEnd)
                 .padding(end = 10.dp)
                 .clickable {
-                    Toast
-                        .makeText(contextProvider(), "Profile", Toast.LENGTH_SHORT)
-                        .show()
+                    navController.navigate("Profile")
                 },
             contentScale = ContentScale.Fit
         )
@@ -175,7 +173,7 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
 @Composable
 fun LowerPanel(databaseMenuItems: List<MenuItemRoom>, search: MutableState<String>) {
     val categories = databaseMenuItems.map {
-        it.category.replaceFirstChar {character ->
+        it.category.replaceFirstChar { character ->
             character.uppercase()
         }
     }.toSet()
@@ -186,11 +184,10 @@ fun LowerPanel(databaseMenuItems: List<MenuItemRoom>, search: MutableState<Strin
     }
 
 
-    val items = if(search.value == ""){
+    val items = if (search.value == "") {
         databaseMenuItems
 
-    }
-    else{
+    } else {
         databaseMenuItems.filter {
             it.title.contains(search.value, ignoreCase = true)
 
@@ -200,11 +197,9 @@ fun LowerPanel(databaseMenuItems: List<MenuItemRoom>, search: MutableState<Strin
     }
 
 
-
-    val filteredItems = if(selectedCategory.value == "" || selectedCategory.value == "all"){
+    val filteredItems = if (selectedCategory.value == "" || selectedCategory.value == "all") {
         items
-    }
-    else{
+    } else {
         items.filter {
             it.category.contains(selectedCategory.value, ignoreCase = true)
         }
@@ -212,11 +207,12 @@ fun LowerPanel(databaseMenuItems: List<MenuItemRoom>, search: MutableState<Strin
 
 
     Column {
-        MenuCategories(categories) {selectedCategory.value = it
+        MenuCategories(categories) {
+            selectedCategory.value = it
         }
         Spacer(modifier = Modifier.size(2.dp))
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            for (item in filteredItems){
+            for (item in filteredItems) {
                 MenuItem(item = item)
             }
         }
@@ -287,10 +283,9 @@ fun CategoryButton(category: String, selectedCategory: (sel: String) -> Unit) {
 @Composable
 fun MenuItem(item: MenuItemRoom) {
 
-    val itemDescription = if(item.description.length>100) {
-        item.description.substring(0,100) + ". . ."
-    }
-    else{
+    val itemDescription = if (item.description.length > 100) {
+        item.description.substring(0, 100) + ". . ."
+    } else {
         item.description
     }
 
@@ -313,16 +308,22 @@ fun MenuItem(item: MenuItemRoom) {
                 Modifier.fillMaxWidth(0.5f),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = item.title, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 10.dp))
+                Text(
+                    text = item.title,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 10.dp)
+                )
                 Text(text = itemDescription, modifier = Modifier.padding(bottom = 10.dp))
                 Text(text = "$ ${item.price}", fontWeight = FontWeight.Bold)
 
             }
 
-            GlideImage(model = item.imageUrl,
+            GlideImage(
+                model = item.imageUrl,
                 contentDescription = "",
                 Modifier.size(100.dp, 100.dp),
-                contentScale = ContentScale.Fit)
+                contentScale = ContentScale.Fit
+            )
 
         }
     }
