@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.meta_little_lemon.ui.components.Home
 import com.example.meta_little_lemon.ui.components.Onboarding
+import com.example.meta_little_lemon.ui.components.Profile
 import com.example.meta_little_lemon.ui.theme.Meta_little_lemonTheme
 
 /*
@@ -23,21 +24,23 @@ class MainActivity : ComponentActivity() {
         setContent {
             Meta_little_lemonTheme {
                 // A surface container using the 'background' color from the theme
-                Start(){ this }
+                Start() { this }
             }
         }
     }
 
 
     @Composable
-    fun Start(contextProvider:()-> Context) {
+    fun Start(contextProvider: () -> Context) {
         val navController = rememberNavController()
-        NavHost(navController = navController, startDestination = "Home") {
-            composable("onBoarding") { Onboarding(contextProvider(),navController) }
-            composable("Home"){Home(navController,contextProvider)}
+        NavHost(navController = navController, startDestination = "Profile") {
+            composable("onBoarding") { Onboarding(contextProvider(), navController) }
+            composable("Home") { Home(navController, contextProvider) }
+            composable("Profile") { Profile(contextProvider(), navController) }
         }
     }
 }
+
 
 
 

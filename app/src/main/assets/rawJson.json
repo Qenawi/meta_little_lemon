@@ -22,7 +22,7 @@
       "description": "Fresh salad with romaine lettuce, croutons, and Caesar dressing.",
       "price": 8.99,
       "category": "Salad",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg"
     },
     {
       "id": 4,
@@ -46,7 +46,7 @@
       "description": "Classic Greek salad with feta cheese, olives, and vinaigrette.",
       "price": 9.99,
       "category": "Salad",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg"
     },
     {
       "id": 7,
@@ -70,7 +70,7 @@
       "description": "A refreshing salad with avocado, bacon, blue cheese, and tomatoes.",
       "price": 10.99,
       "category": "Salad",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg"
     },
     {
       "id": 10,
@@ -94,7 +94,7 @@
       "description": "Fresh tomatoes, mozzarella, and basil drizzled with balsamic glaze.",
       "price": 11.99,
       "category": "Salad",
-      "image": "https://github.com/Qenawi/meta_little_lemon/blob/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg?raw=true"
+      "image": "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/salad.jpg"
     }
   ]
 }

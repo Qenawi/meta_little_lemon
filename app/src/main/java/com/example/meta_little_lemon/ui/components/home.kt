@@ -319,7 +319,7 @@ fun MenuItem(item: MenuItemRoom) {
 
             }
 
-            GlideImage(model = "https://raw.githubusercontent.com/Qenawi/meta_little_lemon/d02379ccb9240ce793d72f96bde99fce46223e71/app/src/main/res/drawable/pasta.jpg",
+            GlideImage(model = item.imageUrl,
                 contentDescription = "",
                 Modifier.size(100.dp, 100.dp),
                 contentScale = ContentScale.Fit)
