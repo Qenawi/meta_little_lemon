@@ -9,7 +9,7 @@ Welcome to the Citrus Byte Culinary Experience, an innovative Android applicatio
 
 ## Design 
 
-[![All-Screens-Preview.png](https://i.postimg.cc/TPXQvK0B/LIttle-Lemon-App-all-screens.png)](https://postimg.cc/Mnd1yKhY)
+[![All-Screens-Preview.png](https://raw.githubusercontent.com/Qenawi/meta_little_lemon/master/app/src/main/assets/story.png)]
 
 ## Technology Palette
 
